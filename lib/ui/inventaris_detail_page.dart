@@ -317,9 +317,12 @@ class InventarisDetailPage extends StatelessWidget {
   }
 
   void _showDeleteConfirmation(BuildContext context) {
+    // Simpan context utama sebelum masuk ke dialog
+    final pageContext = context;
+
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: Color(0xFFF5F5DC),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -351,7 +354,7 @@ class InventarisDetailPage extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: Text(
               "Batal",
               style: TextStyle(
@@ -362,12 +365,14 @@ class InventarisDetailPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pop(context);
+              // 1. Tutup dialog konfirmasi terlebih dahulu
+              Navigator.pop(dialogContext);
 
+              // 2. Tampilkan dialog loading menggunakan context halaman
               showDialog(
-                context: context,
+                context: pageContext,
                 barrierDismissible: false,
-                builder: (_) => Center(
+                builder: (loadingContext) => Center(
                   child: CircularProgressIndicator(color: Color(0xFF6D4C41)),
                 ),
               );
@@ -375,26 +380,40 @@ class InventarisDetailPage extends StatelessWidget {
               try {
                 await inventarisBloc.deleteInventaris(inventaris.id!);
 
-                Navigator.pop(context);
-                Navigator.pop(context, true);
+                // 3. Tutup dialog loading
+                Navigator.pop(pageContext);
 
-                ScaffoldMessenger.of(context).showSnackBar(
+                // 4. Tutup halaman detail dan kirim hasil 'true' ke halaman inventaris
+                Navigator.pop(pageContext, true);
+
+                // 5. Tampilkan SnackBar di halaman sebelumnya (InventarisPage)
+                ScaffoldMessenger.of(pageContext).showSnackBar(
                   SnackBar(
                     content: Text("Data berhasil dihapus"),
                     backgroundColor: Color(0xFF6D4C41),
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 );
               } catch (e) {
-                Navigator.pop(context);
+                // Jika gagal, tutup dialog loading
+                Navigator.pop(pageContext);
 
-                ScaffoldMessenger.of(context).showSnackBar(
+                // Tampilkan pesan error
+                ScaffoldMessenger.of(pageContext).showSnackBar(
                   SnackBar(
-                    content: Text("Gagal menghapus data"),
+                    content: Text("Gagal menghapus data: ${e.toString()}"),
                     backgroundColor: Colors.red,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 );
               }
-            }, 
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFFD32F2F),
               shape: RoundedRectangleBorder(

@@ -22,14 +22,17 @@ class InventarisBloc {
   }
 
   Future<Map<String, dynamic>> updateInventaris(Inventaris item) async {
+    if (item.id == null) {
+      throw Exception("ID Inventaris tidak boleh null untuk update");
+    }
     final response = await Api.updateInventaris(item.id!, {
-      "judul": item.judul.toString(),
-      "harga": item.harga.toString(),
-      "jumlah": item.jumlah.toString(),
-      "tanggal_masuk": item.tanggalMasuk.toString(),
-      "volume": item.volume.toString(),
-      "penulis": item.penulis.toString(),
-      "penerbit": item.penerbit.toString(),
+      "judul": item.judul ?? '',
+      "harga": item.harga?.toString() ?? '0',
+      "jumlah": item.jumlah?.toString() ?? '0',
+      "tanggal_masuk": item.tanggalMasuk ?? '',
+      "volume": item.volume?.toString() ?? '0',
+      "penulis": item.penulis ?? '',
+      "penerbit": item.penerbit ?? '',
     });
 
     return response;
