@@ -24,6 +24,11 @@ Aplikasi Mobile **RaiaMart** adalah sistem manajemen inventaris buku yang dibang
 - **UI Components**: Material Design 3
 
 ---
+### Backend (CodeIgniter 4)
+- **Framework**: CodeIgniter 4.6.3
+- **PHP**: 8.3.16
+- **Database**: MySQL
+- **Server**: PHP Built-in Server
 
 ## 📂 Struktur Folder
 
@@ -56,16 +61,16 @@ lib/
 ```
 ## Fitur Aplikasi
 1. Autentikasi
-Login: User dapat masuk menggunakan email dan password. Token sesi disimpan secara lokal.
-Register: Pendaftaran akun baru dengan validasi input.
-Logout: Menghapus sesi lokal dan kembali ke halaman login.
+- Login: User dapat masuk menggunakan email dan password. Token sesi disimpan secara lokal.
+- Register: Pendaftaran akun baru dengan validasi input.
+- Logout: Menghapus sesi lokal dan kembali ke halaman login.
 
 2. Manajemen Inventaris (CRUD)
-List Data: Menampilkan daftar buku inventaris dari API.
-Detail Data: Melihat detail lengkap buku (Judul, Penulis, Harga, Stok, dll).
-Tambah Data: Form untuk menambahkan stok buku baru.
-Edit Data: Mengubah informasi buku yang sudah ada.
-Hapus Data: Menghapus buku dari inventaris dengan konfirmasi dialog.
+- List Data: Menampilkan daftar buku inventaris dari API.
+- Detail Data: Melihat detail lengkap buku (Judul, Penulis, Harga, Stok, dll).
+- Tambah Data: Form untuk menambahkan stok buku baru.
+- Edit Data: Mengubah informasi buku yang sudah ada.
+- Hapus Data: Menghapus buku dari inventaris dengan konfirmasi dialog.
 
 ## ⚙️ Konfigurasi API
 Aplikasi ini terhubung ke backend melalui konfigurasi URL yang terdapat di lib/helpers/api_url.dart.
@@ -81,7 +86,7 @@ Catatan: Pastikan IP address sesuai dengan IP komputer/server tempat backend ber
 ## Demo Aplikasi
 Berikut adalah demonstrasi penggunaan aplikasi RaiaMart:
 
-<video src="raiamart_demo.mp4" width="300" controls></video>
+![Demo Aplikasi](vid/raiamart_demo.mp4)
 
 
 ## 🚀 Cara Menjalankan
