@@ -1,4 +1,4 @@
-# Mobile App - Responsi 2 Mobile Paket 3
+# Pemrograman Mobile - Responsi 2 Mobile Paket 3
 
 ## Identitas Mahasiswa
 - **Nama**: Raia Digna Amanda
@@ -74,7 +74,7 @@ Base URL saat ini: http://192.168.100.64:8080
 
 ```Dart
 
-static const String baseUrl = "[http://192.168.100.64:8080](http://192.168.100.64:8080)";
+static const String baseUrl = "[http://192.168.100.64:8080]";
 ```
 Catatan: Pastikan IP address sesuai dengan IP komputer/server tempat backend berjalan agar aplikasi dapat terhubung, terutama jika dijalankan di Real Device.
 
