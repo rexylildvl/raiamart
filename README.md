@@ -86,7 +86,7 @@ Catatan: Pastikan IP address sesuai dengan IP komputer/server tempat backend ber
 ## Demo Aplikasi
 Berikut adalah demonstrasi penggunaan aplikasi RaiaMart:
 
-![Demo Aplikasi](vid/raiamart_demo.mp4)
+![Demo Aplikasi](vid/raiamart_demo.gif)
 
 
 ## 🚀 Cara Menjalankan
